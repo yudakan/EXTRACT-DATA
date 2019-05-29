@@ -1,4 +1,4 @@
-abstract class Ranger implements Runnable {
+public abstract class Ranger implements Runnable {
 
     /* Atributes */
     private String name;
@@ -46,14 +46,6 @@ abstract class Ranger implements Runnable {
         }
     }
 
-    public boolean skip() {
-        if (canIgo(ix)) {
-            ix++;
-            return true;
-        }
-        else return false;
-    }
-
     public boolean go(int pos) {
         if (canIgo(pos)) {
             ix = pos;
@@ -62,8 +54,33 @@ abstract class Ranger implements Runnable {
         else return false;
     }
 
+    public boolean skip() {
+        if (canIgo(ix)) {
+            ix++;
+            return true;
+        }
+        else return false;
+    }
+
+    public boolean skip(int howMany) {
+        if (canIgo(ix+howMany)) {
+            ix += howMany;
+            return true;
+        }
+        else return false;
+    }
+
     public char read() {
         return canIgo(ix) ? myForest.getData().charAt(ix++) : (char)-1;
+    }
+
+    public String read(int howMany) {
+        if (canIgo(ix+howMany-1)) {
+            String str = myForest.getData().substring(ix, ix+howMany);
+            ix += howMany;
+            return str;
+        }
+        else return null;
     }
 
     /* -- ghosts */

@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 
-class Forest {
+public class Forest {
 
     /* Atributes */
     private String data;
