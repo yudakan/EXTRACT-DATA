@@ -104,7 +104,7 @@ public abstract class Ranger implements Runnable {
             else patIx = 0;
         }
 
-        if (found) return before ? i-pat.length() : i+1;
+        if (found) return before ? i-pat.length()+1 : i+1;
         else return -1;
     }
 
@@ -170,12 +170,8 @@ public abstract class Ranger implements Runnable {
 
     public String getUpTo(String pat) {
         int ix2 = goBeforeGhost(pat);
-
-        StringBuilder str = new StringBuilder();
-        for (int i=ix; i <= ix2; i++)
-            str.append(myForest.getData().charAt(i));
-
-        ix = ix2+1;
-        return str.toString();
+        String str = myForest.getData().substring(ix, ix2);
+        ix = ix2;
+        return str;
     }
 }
